@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+}
+
+body {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+}
+
+#container {
+    width: 300px;
+    height: 525px;
+}
+
+#result {
+    width: 300px;
+    height: 150px;
+    background-color: #fffff7;
+}
+
+#buttons {
+    height: 375px;
+}
+
+#numPad {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.btn {
+    width: 75px;
+    height: 75px;
+    border: 0;
+    background-color: #e30000;
+    color: #fddaa6;
+    font-size: 2rem;
+}
+
+.long {
+    width: 150px;
+    font-size: 1.25rem;
+}

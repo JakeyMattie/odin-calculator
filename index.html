@@ -4,44 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@200;400;700&display=swap" rel="stylesheet">
+
+    <!-- CSS and JS -->
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+
     <title>Calculator</title>
 </head>
 <body>
-    <div id="container">
-        <div id="result">
-        </div>
+    <div id="container" class="flex">
+        <div id="result"></div>
 
-        <div id="buttons">
-            <div id="x">
-                <button id="clearBtn">CLEAR</button>
-                <button id="deleteBtn">DELETE</button>
-            </div>
+        <div id="numPad">
+            <button id="clearBtn" class="long btn">CLEAR</button>
+            <button id="deleteBtn" class="long btn">DELETE</button>
 
-            <div id="numPad">
-                <!-- First row -->
-                <button id="sevenBtn">7</button>
-                <button id="eightBtn">8</button>
-                <button id="nineBtn">9</button>
-                <button id="divideBtn">÷</button>
-                
-                <!-- Second row -->
-                <button id="fourBtn">4</button>
-                <button id="fiveBtn">5</button>
-                <button id="sixBtn">6</button>
-                <button id="multiplyBtn">×</button>
+            <!-- First row -->
+            <button id="sevenBtn" class="btn">7</button>
+            <button id="eightBtn" class="btn">8</button>
+            <button id="nineBtn" class="btn">9</button>
+            <button id="divideBtn" class="btn">÷</button>
+            
+            <!-- Second row -->
+            <button id="fourBtn" class="btn">4</button>
+            <button id="fiveBtn" class="btn">5</button>
+            <button id="sixBtn" class="btn">6</button>
+            <button id="multiplyBtn" class="btn">×</button>
 
-                <!-- Third row -->
-                <button id="oneBtn">1</button>
-                <button id="twoBtn">2</button>
-                <button id="threeBtn">3</button>
-                <button id="subtractBtn">-</button>
+            <!-- Third row -->
+            <button id="oneBtn" class="btn">1</button>
+            <button id="twoBtn" class="btn">2</button>
+            <button id="threeBtn" class="btn">3</button>
+            <button id="subtractBtn" class="btn">-</button>
 
-                <!-- Fourth row -->
-                <button id="decimalBtn">.</button>
-                <button id="zeroBtn">0</button>
-                <button id="equalsBtn">=</button>
-                <button id="plusBtn">+</button>
-            </div>
+            <!-- Fourth row -->
+            <button id="decimalBtn"class="btn">.</button>
+            <button id="zeroBtn" class="btn">0</button>
+            <button id="equalsBtn" class="btn">=</button>
+            <button id="plusBtn" class="btn">+</button>
         </div>
     </div>
 </body>
