@@ -7,7 +7,6 @@
 }
 
 body {
-    display: flex;
     width: 100vw;
     height: 100vh;
     justify-content: center;
@@ -34,15 +33,9 @@ body {
     border-top-right-radius: 10px;
 }
 
-#buttons {
-    height: 375px;
-
-}
-
 #numPad {
     display: flex;
     flex-wrap: wrap;
-    background-color: #e30000;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
@@ -51,12 +44,24 @@ body {
     width: 75px;
     height: 75px;
     border: 0;
-    background-color: transparent;
-    color: #fddaa6;
+    background-color: #e03535;
+    color: #e9d2b0;
     font-size: 2rem;
 }
 
 .long {
     width: 150px;
     font-size: 1.25rem;
+}
+
+.btn:hover {
+    background-color: #d42424;
+}
+
+#decimalBtn {    
+    border-bottom-left-radius: 10px;
+}
+
+#plusBtn {
+    border-bottom-right-radius: 10px;
 }
