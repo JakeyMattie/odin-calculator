@@ -22,28 +22,36 @@ body {
 #container {
     width: 300px;
     height: 525px;
+    box-shadow: 5px 5px 15px 2.5px #3502028f;
+    border-radius: 10px;
 }
 
 #result {
     width: 300px;
     height: 150px;
     background-color: #fffff7;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 #buttons {
     height: 375px;
+
 }
 
 #numPad {
     display: flex;
     flex-wrap: wrap;
+    background-color: #e30000;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .btn {
     width: 75px;
     height: 75px;
     border: 0;
-    background-color: #e30000;
+    background-color: transparent;
     color: #fddaa6;
     font-size: 2rem;
 }
