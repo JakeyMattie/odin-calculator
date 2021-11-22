@@ -67,6 +67,6 @@ body {
     border-bottom-left-radius: 10px;
 }
 
-#plusBtn {
+.botRightRadius {
     border-bottom-right-radius: 10px;
 }
