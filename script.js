@@ -19,6 +19,14 @@ function evaluate(operator, firstValue, secondValue) {
     }
 }
 
+function displayTextWidth(text, font) {
+    let canvas = displayTextWidth.canvas || (displayTextWidth.canvas = document.createElement("canvas"));
+    let context = canvas.getContext("2d");
+    context.font = font;
+    let metrics = context.measureText(text);
+    return metrics.width;
+  }
+
 let firstValue = 0;
 let secondValue = 0;
 let operatorValue = "";
@@ -33,7 +41,10 @@ buttons.forEach(button => {
         else if (button.id == 'numBtn') {
             if (isNaN(displayValue.textContent)) displayValue.textContent = `${button.textContent}`;
             else {
-                displayValue.textContent = `${displayValue.textContent}${button.textContent}`;
+                if (displayTextWidth(displayValue.textContent, "Karla 64px") < 38) {
+                    displayValue.textContent = `${displayValue.textContent}${button.textContent}`;
+                    console.log("Text Width: " + displayTextWidth(displayValue.textContent, "Karla 64px"));
+                }
             }
         }
         else if (button.id == 'operatorBtn') {
@@ -41,16 +52,32 @@ buttons.forEach(button => {
                 firstValue = displayValue.textContent;
                 operatorValue = button.textContent;
                 displayValue.textContent = operatorValue;
+                // console.log(`=====`);
+                // console.log(`firstValue: ${firstValue}`);
+                // console.log(`operatorValue: ${operatorValue}`);
             }
             else if (button.textContent == "=") {
                 if (secondValue != 0) {
                     firstValue = evaluate(operatorValue, firstValue, secondValue);
                     displayValue.textContent = firstValue;
+                    // console.log(`=====`);
+                    // console.log(`firstValue: ${firstValue}`);
+                    // console.log(`secondValue: ${secondValue}`);
+                    // console.log(`operatorValue: ${operatorValue}`);
                 }
                 else if ((firstValue != 0) && (isNaN(displayValue.textContent))) {
                     firstValue = displayValue.textContent;
                     displayValue.textContent = firstValue;
                 } 
+                else if (secondValue == 0) {
+                    secondValue = displayValue.textContent;
+                    firstValue = evaluate(operatorValue, firstValue, secondValue);
+                    displayValue.textContent = firstValue;
+                    // console.log(`=====`);
+                    // console.log(`firstValue: ${firstValue}`);
+                    // console.log(`secondValue: ${secondValue}`);
+                    // console.log(`operatorValue: ${operatorValue}`);
+                }
                 else if (firstValue == 0) displayValue.textContent = button.textContent;
                 else displayValue.textContent = button.textContent;
             }
@@ -63,6 +90,10 @@ buttons.forEach(button => {
                 firstValue = evaluate(operatorValue, firstValue, secondValue);
                 operatorValue = button.textContent;
                 displayValue.textContent = operatorValue;
+                // console.log(`=====`);
+                // console.log(`firstValue: ${firstValue}`);
+                // console.log(`secondValue: ${secondValue}`);
+                // console.log(`operatorValue: ${operatorValue}`);
             }
         }
     }); 
