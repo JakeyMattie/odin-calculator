@@ -3,6 +3,7 @@
     displayValue.textContent = "";
     firstValue = 0;
     secondValue = 0;
+    decimalValue = false;
 }
 
 function backspace() {
@@ -11,11 +12,41 @@ function backspace() {
 }
 
 function evaluate(operator, firstValue, secondValue) {
-    switch(operator) {
-        case "+": return parseInt(firstValue) + parseInt(secondValue);
-        case "-": return parseInt(firstValue) - parseInt(secondValue);
-        case "×": return parseInt(firstValue) * parseInt(secondValue);
-        case "÷": return parseInt(firstValue) / parseInt(secondValue);
+    if (typeof(firstValue) == 'string') { //this is for the first pass of firstValue, where it is still a string
+        if (firstValue.indexOf(`.`) == -1) {
+            switch(operator) {
+                case "+": return parseInt(firstValue) + parseInt(secondValue);
+                case "-": return parseInt(firstValue) - parseInt(secondValue);
+                case "×": return parseInt(firstValue) * parseInt(secondValue);
+                case "÷": return parseInt(firstValue) / parseInt(secondValue);
+            }
+        }
+        else {
+            switch(operator) {
+                case "+": return parseFloat(firstValue) + parseFloat(secondValue);
+                case "-": return parseFloat(firstValue) - parseFloat(secondValue);
+                case "×": return parseFloat(firstValue) * parseFloat(secondValue);
+                case "÷": return parseFloat(firstValue) / parseFloat(secondValue);
+            }
+        }
+    }
+    else if (typeof(firstValue) == 'number') { //for succeeding passes for evaluate
+        if (firstValue % 1 == 0) {
+            switch(operator) {
+                case "+": return parseInt(firstValue) + parseInt(secondValue);
+                case "-": return parseInt(firstValue) - parseInt(secondValue);
+                case "×": return parseInt(firstValue) * parseInt(secondValue);
+                case "÷": return parseInt(firstValue) / parseInt(secondValue);
+            }
+        }
+        else {
+            switch(operator) {
+                case "+": return parseFloat(firstValue) + parseFloat(secondValue);
+                case "-": return parseFloat(firstValue) - parseFloat(secondValue);
+                case "×": return parseFloat(firstValue) * parseFloat(secondValue);
+                case "÷": return parseFloat(firstValue) / parseFloat(secondValue);
+            }
+        }
     }
 }
 
@@ -30,6 +61,7 @@ function displayTextWidth(text, font) {
 let firstValue = 0;
 let secondValue = 0;
 let operatorValue = "";
+let decimalValue = false;
 
 const buttons = document.querySelectorAll('button');
 buttons.forEach(button => {
@@ -47,8 +79,16 @@ buttons.forEach(button => {
                 }
             }
         }
+        else if (button.id == 'decimalBtn') {
+            if (decimalValue == false) {
+                if (displayValue.textContent == "" || isNaN(displayValue.textContent))
+                    displayValue.textContent = `0.`;
+                else displayValue.textContent = `${displayValue.textContent}.`;
+                decimalValue = true;
+            }
+        }
         else if (button.id == 'operatorBtn') {
-            if (firstValue == 0) {
+            if (firstValue == 0) { //If the user clicks/presses an operator for the first time
                 firstValue = displayValue.textContent;
                 operatorValue = button.textContent;
                 displayValue.textContent = operatorValue;
@@ -56,8 +96,8 @@ buttons.forEach(button => {
                 // console.log(`firstValue: ${firstValue}`);
                 // console.log(`operatorValue: ${operatorValue}`);
             }
-            else if (button.textContent == "=") {
-                if (secondValue != 0) {
+            else if (button.textContent == "=") { //If the user presses the equal sign under the ff conditions:
+                if (secondValue != 0) { //
                     firstValue = evaluate(operatorValue, firstValue, secondValue);
                     displayValue.textContent = firstValue;
                     // console.log(`=====`);
@@ -65,7 +105,7 @@ buttons.forEach(button => {
                     // console.log(`secondValue: ${secondValue}`);
                     // console.log(`operatorValue: ${operatorValue}`);
                 }
-                else if ((firstValue != 0) && (isNaN(displayValue.textContent))) {
+                else if ((firstValue != 0) && (isNaN(displayValue.textContent))) { //
                     firstValue = displayValue.textContent;
                     displayValue.textContent = firstValue;
                 } 
@@ -77,6 +117,7 @@ buttons.forEach(button => {
                     // console.log(`firstValue: ${firstValue}`);
                     // console.log(`secondValue: ${secondValue}`);
                     // console.log(`operatorValue: ${operatorValue}`);
+                    // console.log(`typeof: ${typeof(firstValue)}`);
                 }
                 else if (firstValue == 0) displayValue.textContent = button.textContent;
                 else displayValue.textContent = button.textContent;
@@ -90,11 +131,13 @@ buttons.forEach(button => {
                 firstValue = evaluate(operatorValue, firstValue, secondValue);
                 operatorValue = button.textContent;
                 displayValue.textContent = operatorValue;
-                // console.log(`=====`);
-                // console.log(`firstValue: ${firstValue}`);
-                // console.log(`secondValue: ${secondValue}`);
-                // console.log(`operatorValue: ${operatorValue}`);
+                console.log(`=====`);
+                console.log(`firstValue: ${firstValue}`);
+                console.log(`secondValue: ${secondValue}`);
+                console.log(`operatorValue: ${operatorValue}`);
+                console.log(`typeof: ${typeof(firstValue)}`);
             }
+            decimalValue = false;
         }
     }); 
 });
